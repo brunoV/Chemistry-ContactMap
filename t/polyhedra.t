@@ -1,10 +1,11 @@
+use strict;
+use warnings;
 use Test::More;
 use Chemistry::MacroMol;
 use Chemistry::File::PDB;
 use Bio::Tools::Run::QCons;
 
 BEGIN { use_ok( 'Chemistry::ContactMap::Polyhedra' ) }
-
 
 my @mols = map { Chemistry::MacroMol->new } (0..1);
 
