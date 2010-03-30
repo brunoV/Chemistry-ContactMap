@@ -15,10 +15,18 @@ use Chemistry::MacroMol;
 
 }
 
-my @mols = map { Chemistry::MacroMol->new } (0..1);
+my $strings = [ 't/data/A.pdb', 't/data/B.pdb'          ];
+my $mols    = [ map { Chemistry::MacroMol->new } (0..1) ];
 
-my $cmap = My::ContactMap->new( structures => \@mols );
-isa_ok $cmap, 'My::ContactMap';
+my $fhs;
+for (0 .. $#$strings) {
+    open( $fhs->[$_], '<', $strings->[$_] );
+}
+
+foreach my $input_type ($strings, $fhs, $mols) {
+    $cmap = My::ContactMap->new( structures => $input_type );
+    isa_ok $cmap, 'My::ContactMap';
+}
 
 dies_ok { My::ContactMap->new } 'Dies with no structures';
 
