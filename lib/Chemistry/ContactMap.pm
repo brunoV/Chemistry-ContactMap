@@ -50,7 +50,7 @@ Thus, these will all work:
     My::Class->new( structures => \@strings );
     My::Class->new( structures => \@mols    );
 
-=contacts
+=attr contacts
 
 Read only, lazily-built attribute without a type. You are encouraged to
 add one in the consuming class. Also, you must implement a
