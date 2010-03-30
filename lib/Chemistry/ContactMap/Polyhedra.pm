@@ -126,3 +126,48 @@ __END__
 
 =head1 SYNOPSIS
 
+    my $cmap = Chemistry::ContactMap::Polyhedra->new( structures => [ $mol1, $mol2 ] );
+
+    foreach my $contact ( @{ $cmap->contacts } ) {
+
+        # get the intervening atoms
+        my ($atom1, $atom2) = $contact->atoms;
+
+        say $_->name, $_->number for ($atom1, $atom2);
+
+        say $contact->length(), $contact->attr('area'), $contact->type();
+    }
+
+=attr structures
+
+Two L<Chemistry::MacroMol> objects whose contact information you want to
+calculate. Required.
+
+=attr add_bonds_to_structures
+
+A boolean value that sets whether to add the atom-atom contacts found
+between the macromolecules for each atom pair, as a Chemistry::Bond
+object of order one. It is set as 0 by default.
+
+=attr contacts
+
+An array reference of L<Chemistry::Bond> objects that represent the
+non-covalent (order 0) bonds between atom-atom pairs that are found to
+be interacting.
+
+The contact type (Van der Waals, Ionic, Hydrogen bond or Hydrophobic),
+the total contact area and the bond length are saved in the object.
+
+See L<Chemistry::Bond> for details on how to use the bond class.
+
+=attr residue_contacts
+
+An array reference with residue-residue contact information. This data
+structure is identical to that returned by L<Bio::Tools::Run::QCons>,
+see the docs there to find out how to extract the relevant information
+from it.
+
+=attr atom_contacts
+
+An array reference with atom-atom contact information. Identical to that
+returned by L<Bio::Tools::Run::QCons>. See its doc for more information.

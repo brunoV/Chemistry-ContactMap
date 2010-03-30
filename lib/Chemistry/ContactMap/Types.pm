@@ -2,6 +2,7 @@ package Chemistry::ContactMap::Types;
 
 use MouseX::Types::Mouse qw(ArrayRef);
 use MouseX::Types -declare => [qw( MolPair )];
+# ABSTRACT: Specific types for Chemistry::ContactMap.
 use List::MoreUtils 'all';
 
 subtype MolPair, as ArrayRef, where {
@@ -9,3 +10,10 @@ subtype MolPair, as ArrayRef, where {
 };
 
 1;
+
+__END__
+
+=head1 DESCRIPTION
+
+This is a type library for L<Chemistry::ContactMap> related modules. You
+don't have to use it directly.
